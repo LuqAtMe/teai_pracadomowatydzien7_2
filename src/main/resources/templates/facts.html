@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Facts</title>
+</head>
+
+<body>
+
+<br>
+<h3>Download Cat Fact</h3>
+<form th:action="@{/downloadFact}" method="get">
+    <input type="submit" value="Download"><br>
+</form>
+
+<h3>Actual facts list</h3>
+<form>
+    <table style="border: 1px solid #AAAAAA; width: 500px;
+    padding: 3px 4px;">
+        <thead>
+        <tr style="text-align: left; width: 25%">
+            <th scope="col">ID</th>
+            <th scope="col">Text</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="fact: ${facts}">
+            <td th:text="${fact.getId()}"></td>
+            <td th:text="${fact.getText()}"></td>
+            <td>
+                <button>
+                    <a style="text-decoration:none; color:black" type="button"
+                       th:href="@{|/fact-edit/${fact.id}|}">Edit</a>
+                </button>
+            </td>
+            <td>
+                <button>
+                    <a style="text-decoration:none; color:black" type="button"
+                       th:href="@{|/delete/${fact.id}|}">Delete</a>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+</body>
+</html>
